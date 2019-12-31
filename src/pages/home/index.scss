@@ -78,4 +78,15 @@
       }
     }
   }
+  .no_data_content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    align-items: center;
+    margin-top: 200px;
+  }
+  .no_data {
+    width: 248px;
+    height: 200px;
+  }
 }

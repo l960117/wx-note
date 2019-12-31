@@ -1,9 +1,19 @@
 import Taro, { Component, Config } from '@tarojs/taro'
 import { View } from '@tarojs/components'
 import login from './services/login'
+import { Provider } from "@tarojs/redux";
+import models from './models'
+import dva from './utils/dva'
 
 import './app.scss'
 import './assets/iconfont/iconfont.css';
+
+const dvaApp = dva.createApp({
+  initialState: {},
+  models: models,
+});
+
+const store = dvaApp.getStore();
 
 // 如果需要在 h5 环境中开启 React Devtools
 // 取消以下注释：
@@ -94,7 +104,9 @@ class App extends Component {
   // 请勿修改此函数
   render () {
     return (
-      <View />
+      <Provider store={store}>
+        <View />
+      </Provider>
     )
   }
 }
