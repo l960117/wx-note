@@ -24,7 +24,7 @@ class Home extends Component {
     console.log(res)
     if(res.detail.userInfo){
       Taro.setStorageSync('userInfo', JSON.stringify(res.detail.userInfo))
-      login()
+      login(res.detail.userInfo)
     }else{
       Taro.showModal({
         title: '温馨提示',

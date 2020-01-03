@@ -3,7 +3,6 @@ import loginIn from './app'
 
 const login = (userInfo) => {
   Taro.login().then(res => {
-    console.log(userInfo)
     loginIn({code: res.code ||'', avatar: userInfo.avatarUrl, nickname: userInfo.nickName})
     .then((data) => {
       if (data.resultCode === 200) {
