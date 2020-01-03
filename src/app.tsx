@@ -4,6 +4,9 @@ import login from './services/login'
 import { Provider } from "@tarojs/redux";
 import models from './models'
 import dva from './utils/dva'
+if (process.env.TARO_ENV !== 'alipay') {
+  require('@tarojs/async-await')
+}
 
 import './app.scss'
 import './assets/iconfont/iconfont.css';
@@ -50,7 +53,7 @@ class App extends Component {
       "list": [
         {
           "pagePath": "pages/home/index",
-          "text": "书签"
+          "text": ""
         },
         {
           "pagePath": "pages/add/index",
@@ -58,14 +61,14 @@ class App extends Component {
         },
         {
           "pagePath": "pages/finding/index",
-          "text": "发现"
+          "text": ""
         }
       ]
     }
   }
 
   componentWillMount () {
-    Taro.hideTabBar();
+    Taro.hideTabBar()
     this.getOauthStatus()
   }
 
@@ -95,7 +98,8 @@ class App extends Component {
       lang: 'zh_CN'
     }).then( res => {
       Taro.setStorageSync('userInfo', JSON.stringify(res.userInfo))
-      login()
+      console.log(res.userInfo)
+      login(res.userInfo)
     })
     .catch( err => console.log(err) )
   }

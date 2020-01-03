@@ -2,6 +2,7 @@
   height: 100%;
   display: flex;
   flex-direction: column;
+  background: #f0f0f0;;
   .home-top {
     background: #509aff;
     padding: 30px;
@@ -39,6 +40,10 @@
       }
     }
   }
+  .scrollview {
+    height: calc(100% - 335px - 120px);
+    background: #f0f0f0;
+  }
   .home-list {
     background: #f0f0f0;
     flex: 1;
@@ -52,6 +57,7 @@
       padding-left: 30px;
       border-left: 8px solid #000;
       box-shadow: 3px 3px 3px 3px rgba(0,0,0,0.16);
+      margin-bottom: 30px;
       .list-item-left {
         display: flex;
         flex-direction: column;
@@ -88,5 +94,10 @@
   .no_data {
     width: 248px;
     height: 200px;
+  }
+  .no_data_text {
+    margin-top: 20px;
+    color: #8d989c;
+    font-size: 24px;
   }
 }

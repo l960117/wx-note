@@ -1,8 +1,17 @@
-@import "~taro-ui/dist/style/components/button.scss";
-@import "~taro-ui/dist/style/components/loading.scss";
-@import "~taro-ui/dist/style/components/tab-bar.scss";
-@import "~taro-ui/dist/style/components/badge.scss";
-@import "~taro-ui/dist/style/components/icon.scss";
+$at-tabs-bg-color: #509aff;
+$at-tabs-color: #ffffff;
+$at-tabs-color-active: #ffffff;
+$at-tabs-line-height: 6px;
+
+@import "~taro-ui/dist/style/components/tabs.scss";
 page {
   height: 100%;
+}
+.at-tabs__item-underline {
+  left: 38% !important;
+  width: 24% !important;
+  border-radius: 8px;
+}
+.at-tabs {
+  height: auto;
 }

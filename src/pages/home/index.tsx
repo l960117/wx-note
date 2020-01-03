@@ -1,5 +1,5 @@
 import Taro, { Component } from '@tarojs/taro'
-import { View, Text } from '@tarojs/components'
+import { View, Text, Block, ScrollView } from '@tarojs/components'
 import TarBar from '../../components/TarBar'
 import getNoteList from './service'
 import './index.scss'
@@ -7,7 +7,10 @@ import './index.scss'
 class Home extends Component {
 
   state = {
-    noteList: []
+    noteList: [],
+    totalPrivate: 0,
+    totalPublic: 0,
+    total: 0
   }
 
   componentWillMount () {
@@ -18,7 +21,10 @@ class Home extends Component {
     .then((res) => {
       if (res.resultCode === 200) {
         this.setState({
-          noteList: res.data || []
+          noteList: res.data.results || [],
+          totalPrivate: res.data.totalPrivate,
+          totalPublic: res.data.totalPublic,
+          total: res.data.total
         })
       }
     })
@@ -28,7 +34,7 @@ class Home extends Component {
 
   }
   render () {
-    const { noteList } = this.state
+    const { noteList, totalPrivate, totalPublic, total } = this.state
     return (
       <View className="home-content">
         <View className="home-top">
@@ -41,31 +47,45 @@ class Home extends Component {
               <Text>便签数</Text>
             </View>
             <View className="home-count-weight">
-              <Text className="home-count-number">28</Text>
+              <Text className="home-count-number">{total}</Text>
               <Text className="home-count-after">个</Text>
             </View>
             <View className="home-count-bottom">
-              <Text className="bottom-text">公开12个，悄悄话16个</Text>
+              <Text className="bottom-text">公开{totalPublic}个，悄悄话{totalPrivate}个</Text>
             </View>
           </View>
         </View>
-        <View className="home-list">
-          {
-            noteList.length !== 0 ?
-            <View className="list-item">
-              <View className="list-item-left">
-                <Text className="item-main">爱读书细节优化,LOGO设计</Text>
-                <Text className="item-second">3月10日15：32分</Text>
+        <ScrollView
+          className='scrollview'
+          scrollY
+          scrollWithAnimation
+          >
+          <View className="home-list">
+            {
+              noteList.length !== 0 ?
+              <Block>
+                {
+                  noteList.map((item, noteIndex) => {
+                    return (
+                      <View className="list-item" key={noteIndex} style={{'border-left': `8rpx solid ${item.color}`}}>
+                        <View className="list-item-left">
+                          <Text className="item-main">{item.content}</Text>
+                          <Text className="item-second">{item.noteTime}</Text>
+                        </View>
+                        <Text className={`iconfont iconshoucang-tianchong list-item-right ${false ? 'icon-selected' : ''}`}></Text>
+                      </View>
+                    )
+                  })
+                }
+              </Block>
+              :
+              <View className="no_data_content">
+                <Image src="http://39.108.232.210:9166/images/no_data.png" className="no_data"></Image>
+                <Text className="no_data_text">还没有写便签，快去写一条吧~</Text>
               </View>
-              <Text className={`iconfont iconshoucang-tianchong list-item-right ${false ? 'icon-selected' : ''}`}></Text>
-            </View>
-            :
-            <View className="no_data_content">
-              <Image src="http://39.108.232.210:9166/images/no_data.png" className="no_data"></Image>
-              <Text>还没有写便签，快去写一条吧~</Text>
-            </View>
-          }
-        </View>
+            }
+          </View>
+        </ScrollView>
         <TarBar selected="home" addNote={this.addNote}/>
       </View>
     )

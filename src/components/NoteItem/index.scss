@@ -1,0 +1,48 @@
+.note-item {
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px 0 rgba(0,0,0,0.16);
+  padding: 20px;
+  &-image {
+    width: 100%;
+    height: auto;
+  }
+  &-content {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    margin-right: 80px;
+    &-title {
+      line-height: 50px;
+      color: #323232;
+      font-size: 30px;
+      max-width: 100%;
+      overflow: hidden;
+      text-overflow:ellipsis;
+      white-space: nowrap;
+    }
+    &-user {
+      display: flex;
+      flex-direction: row;
+      margin-top:20px;
+      &-avatar {
+        border-radius: 50%;
+        height: 60px;
+        width: 60px;
+      }
+      &-detail {
+        display: flex;
+        flex-direction: column;
+        margin-left: 10px;
+        &-name {
+          color: #666666;
+          font-size: 26px;
+        }
+        &-time {
+          color: #999999;
+          font-size: 20px;
+        }
+      }
+    }
+  }
+}
