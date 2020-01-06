@@ -38,7 +38,8 @@ class App extends Component {
       'pages/home/index',
       'pages/login/index',
       'pages/finding/index',
-      'pages/add/index'
+      'pages/add/index',
+      'pages/usercenter/index'
     ],
     window: {
       backgroundTextStyle: 'light',
@@ -47,28 +48,30 @@ class App extends Component {
       navigationBarTextStyle: 'white'
     },
     tabBar: {
-      "backgroundColor": "#ffffff",
-      "color": "#8d989c",
-      "selectedColor": "#509aff",
-      "list": [
+      backgroundColor: '#ffffff',
+      color: "#8d989c",
+      selectedColor: '#509aff',
+      custom: true,
+      borderStyle: 'white',
+      list: [
         {
-          "pagePath": "pages/home/index",
-          "text": ""
+          pagePath: 'pages/home/index',
+          text: ''
         },
         {
-          "pagePath": "pages/add/index",
-          "text": ""
+          pagePath: 'pages/add/index',
+          text: ''
         },
         {
-          "pagePath": "pages/finding/index",
-          "text": ""
+          pagePath: 'pages/finding/index',
+          text: ''
         }
       ]
-    }
+    },
+    usingComponents: {}
   }
 
   componentWillMount () {
-    Taro.hideTabBar()
     this.getOauthStatus()
   }
 

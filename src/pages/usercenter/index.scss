@@ -1,0 +1,32 @@
+@import "~taro-ui/dist/style/components/accordion.scss";
+@import "~taro-ui/dist/style/components/icon.scss";
+@import "~taro-ui/dist/style/components/swipe-action.scss";
+.at-accordion__header {
+  position: sticky;
+  top: 0;
+  background: #ffffff;
+  padding: 10px 24px 10px 24px;
+}
+.center-content {
+  background: #f0f0f0;
+  height: 100%;
+}
+.center-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: center;
+  padding-left: 30px;
+  height: 80px;
+  background: #ffffff;
+  border-bottom: 1px solid #dddddd;
+  &-img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;;
+  }
+  &-text {
+    color: #323232;
+    margin-left: 10px;
+  }
+}

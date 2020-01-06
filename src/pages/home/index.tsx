@@ -33,14 +33,17 @@ class Home extends Component {
   addNote = () => {
 
   }
+  goToCenter = () => {
+    Taro.navigateTo({url: '/pages/usercenter/index'})
+  }
   render () {
     const { noteList, totalPrivate, totalPublic, total } = this.state
     return (
       <View className="home-content">
         <View className="home-top">
           <View className="home-name">
-            <Text className="home-nickname">Summer</Text>
-            <Text className="iconfont iconwangfan-copy name-btn"></Text>
+            <Text className="home-nickname">{JSON.parse(Taro.getStorageSync('userInfo')).nickName}</Text>
+            <Text className="iconfont iconwangfan-copy name-btn" onClick={this.goToCenter}></Text>
           </View>
           <View className="home-count">
             <View className="home-count-title1">
