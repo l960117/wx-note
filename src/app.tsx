@@ -51,7 +51,6 @@ class App extends Component {
       backgroundColor: '#ffffff',
       color: "#8d989c",
       selectedColor: '#509aff',
-      custom: true,
       borderStyle: 'white',
       list: [
         {
@@ -72,6 +71,7 @@ class App extends Component {
   }
 
   componentWillMount () {
+    Taro.hideTabBar()
     this.getOauthStatus()
   }
 
