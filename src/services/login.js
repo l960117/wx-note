@@ -7,7 +7,7 @@ const login = (userInfo) => {
     .then((data) => {
       if (data.resultCode === 200) {
         Taro.setStorageSync('key', data.data)
-        Taro.navigateTo({
+        Taro.switchTab({
           url: '/pages/home/index'
         })
       }

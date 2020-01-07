@@ -1,0 +1,88 @@
+@import "~taro-ui/dist/style/components/textarea.scss";
+@import "~taro-ui/dist/style/components/image-picker.scss";
+@import "~taro-ui/dist/style/components/message.scss";
+@import "~taro-ui/dist/style/components/modal.scss";
+.add_content {
+  background: #f0f0f0;
+  height: 100%;
+  .add_top {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    background: #509AFF;
+    padding-left: 30px;
+    padding-right: 30px;
+    height: 80px;
+    .add_nickname {
+      color: #ffffff;
+      font-size: 30px;
+    }
+    .ok_btn {
+      font-size: 40px;
+      color: #ffffff;
+    }
+  }
+  .add_center {
+    background: #ffffff;
+    padding-bottom: 50px;
+  }
+  .at-textarea {
+    height: 250px;
+    border: none;
+  }
+  .add_view_line {
+    height: 10px;
+    background: #f0f0f0;
+    width: 100%;
+  }
+  .add_view_color {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    line-height: 100px;
+    padding-left: 30px;
+    padding-right: 30px;
+    background: #ffffff;
+    .add_view_color_text {
+      color: #323232;
+      font-size: 30px;
+    }
+    .add_view_color_list {
+      flex: 0.7;
+      display: flex;
+      align-items: center;
+      text-align: right;
+      .color {
+        font-size: 30px;
+        flex: 1;
+      }
+      .color_1 {
+        color: #ff5958;
+      }
+      .color_2 {
+        color: #609dff;
+      }
+      .color_3 {
+        color: #ffb849;
+      }
+      .color_4 {
+        color: #7a88ff;
+      }
+      .color_5 {
+        color: #ffa5eb;
+      }
+    }
+  }
+  .loading-content {
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .loading-image {
+      width: 100px;
+      height: 100px;
+    }
+  }
+}

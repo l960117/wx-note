@@ -49,9 +49,9 @@ interface TarBarProps {
 class TarBar extends Component<TarBarProps> {
 
   addNote = () => {
-    if (this.props.addNote) {
-      this.props.addNote()
-    }
+    Taro.navigateTo({
+      url: '/pages/add/index'
+    })
   }
 
   render () {

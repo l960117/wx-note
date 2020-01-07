@@ -58,10 +58,6 @@ class App extends Component {
           text: ''
         },
         {
-          pagePath: 'pages/add/index',
-          text: ''
-        },
-        {
           pagePath: 'pages/finding/index',
           text: ''
         }

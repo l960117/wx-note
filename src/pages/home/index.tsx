@@ -3,6 +3,7 @@ import { View, Text, Block, ScrollView } from '@tarojs/components'
 import TarBar from '../../components/TarBar'
 import getNoteList from './service'
 import './index.scss'
+import moment from 'moment'
 
 class Home extends Component {
 
@@ -10,10 +11,19 @@ class Home extends Component {
     noteList: [],
     totalPrivate: 0,
     totalPublic: 0,
-    total: 0
+    total: 0,
+    nickname: ''
   }
 
   componentWillMount () {
+    if (!Taro.getStorageSync('key')) {
+      return
+    }
+    if (Taro.getStorageSync('userInfo')) {
+      this.setState({
+        nickname: JSON.parse(Taro.getStorageSync('userInfo')).nickName
+      })
+    }
     let params  = {
       openid: JSON.parse(Taro.getStorageSync('key')).openid
     }
@@ -37,12 +47,12 @@ class Home extends Component {
     Taro.navigateTo({url: '/pages/usercenter/index'})
   }
   render () {
-    const { noteList, totalPrivate, totalPublic, total } = this.state
+    const { noteList, totalPrivate, totalPublic, total, nickname } = this.state
     return (
       <View className="home-content">
         <View className="home-top">
           <View className="home-name">
-            <Text className="home-nickname">{JSON.parse(Taro.getStorageSync('userInfo')).nickName}</Text>
+            <Text className="home-nickname">{nickname}</Text>
             <Text className="iconfont iconwangfan-copy name-btn" onClick={this.goToCenter}></Text>
           </View>
           <View className="home-count">
@@ -73,7 +83,7 @@ class Home extends Component {
                       <View className="list-item" key={noteIndex} style={{'border-left': `8rpx solid ${item.color}`}}>
                         <View className="list-item-left">
                           <Text className="item-main">{item.content}</Text>
-                          <Text className="item-second">{item.noteTime}</Text>
+                          <Text className="item-second">{moment(item.noteTime).format('YYYY-MM-DD HH:mm')}</Text>
                         </View>
                         <Text className={`iconfont iconshoucang-tianchong list-item-right ${false ? 'icon-selected' : ''}`}></Text>
                       </View>
