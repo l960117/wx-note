@@ -79,7 +79,12 @@ class Add extends Component {
               uploadImageName:oldUploadImageName
             })
           }, () => {
+            if ((success + fail) == data.path.length) {
+              callback()
+            }
           })
+        } else {
+          fail++
         }
       },
       fail: () => {
@@ -88,8 +93,6 @@ class Add extends Component {
       complete: () => {
         i++;
         if(i==data.path.length){
-          console.log('上传完成',i)
-          callback()
         }else{
           data.i=i
           data.success=success
@@ -102,7 +105,6 @@ class Add extends Component {
 
   submitNoteData = () => {
     const { content, color, uploadImageName } = this.state
-    console.log('上传完',uploadImageName)
     let params = {
       openid: JSON.parse(Taro.getStorageSync('key')).openid || '',
       content,
