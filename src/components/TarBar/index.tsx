@@ -1,11 +1,11 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View, Navigator, Block, Text, Image } from '@tarojs/components'
-import './index.scss'
 import note1 from '../../assets/images/note_1.png'
 import note2 from '../../assets/images/note_2.png'
 import find1 from '../../assets/images/find_1.png'
 import find2 from '../../assets/images/find_2.png'
 import noteAdd from '../../assets/images/note_add.png'
+import './index.scss'
 
 const tarbar = {
   "background": {
@@ -50,7 +50,7 @@ class TarBar extends Component<TarBarProps> {
 
   addNote = () => {
     Taro.navigateTo({
-      url: '/pages/add/index'
+      url: '/pages/add/index?type=public'
     })
   }
 

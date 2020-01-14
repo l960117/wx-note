@@ -106,12 +106,12 @@ class Add extends Component {
   submitNoteData = () => {
     const { content, color, uploadImageName } = this.state
     let params = {
-      openid: JSON.parse(Taro.getStorageSync('key')).openid || '',
+      openid: this.$router.params.openid ? this.$router.params.openid : JSON.parse(Taro.getStorageSync('key')).openid,
       content,
       color,
       images: uploadImageName.join('|'),
       editOpenid: JSON.parse(Taro.getStorageSync('key')).openid || '',
-      type: 'public'
+      type: this.$router.params.type
     }
     addNote(params).then((res) => {
       this.setState({
@@ -145,7 +145,7 @@ class Add extends Component {
     return (
       <View className='add_content'>
         <View className='add_top'>
-          <Text className='add_nickname'>Summer 的便签</Text>
+          <Text className='add_nickname'>{this.$router.params.type === 'public' ? '写便签' : '写悄悄话'}</Text>
           <Text className='iconfont iconicon_oversea_actions ok_btn' onClick={this.addNote.bind(this)}></Text>
         </View>
         <View className='add_center'>

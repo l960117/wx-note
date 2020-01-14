@@ -39,7 +39,9 @@ class App extends Component {
       'pages/login/index',
       'pages/finding/index',
       'pages/add/index',
-      'pages/usercenter/index'
+      'pages/usercenter/index',
+      'pages/friend/index',
+      'pages/detail/index'
     ],
     window: {
       backgroundTextStyle: 'light',

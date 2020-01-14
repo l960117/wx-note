@@ -44,6 +44,12 @@ class UserCenter extends Component {
     })
   }
 
+  goToFriendHome (openid) {
+    Taro.navigateTo({
+      url: '/pages/friend/index?openid=' + openid
+    })
+  }
+
   render () {
     const { followList, fensList } = this.state
     return (
@@ -65,7 +71,7 @@ class UserCenter extends Component {
                   }
                 ]}
                 >
-                  <View className='center-item'>
+                  <View className='center-item' onClick={this.goToFriendHome.bind(this, item.openid)}>
                     <Image src={item.avatar} className='center-item-img'></Image>
                     <Text className='center-item-text'>{item.nickname}</Text>
                   </View>
@@ -82,7 +88,7 @@ class UserCenter extends Component {
           {
             fensList.map((item, index) => {
               return (
-                <View className='center-item' key={index}>
+                <View className='center-item' key={index}  onClick={this.goToFriendHome.bind(this, item.openid)}>
                   <Image src={item.avatar} className='center-item-img'></Image>
                   <Text className='center-item-text'>{item.nickname}</Text>
                 </View>

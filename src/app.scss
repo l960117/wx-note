@@ -4,6 +4,7 @@ $at-tabs-color-active: #ffffff;
 $at-tabs-line-height: 6px;
 
 @import "~taro-ui/dist/style/components/tabs.scss";
+@import "~taro-ui/dist/style/components/load-more.scss";
 .tab-bar-border {
   background-color: #ffffff !important;
 }
@@ -17,4 +18,9 @@ page {
 }
 .at-tabs {
   height: auto;
+}
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
 }

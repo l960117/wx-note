@@ -40,9 +40,12 @@ class Home extends Component {
     })
   }
 
-  addNote = () => {
-
+  showDetail (data) {
+    Taro.navigateTo({
+      url: '/pages/detail/index?noteId=' + data.noteId
+    })
   }
+
   goToCenter = () => {
     Taro.navigateTo({url: '/pages/usercenter/index'})
   }
@@ -80,7 +83,7 @@ class Home extends Component {
                 {
                   noteList.map((item, noteIndex) => {
                     return (
-                      <View className="list-item" key={noteIndex} style={{'border-left': `8rpx solid ${item.color}`}}>
+                      <View className="list-item" key={noteIndex} style={{'border-left': `8rpx solid ${item.color}`}} onClick={this.showDetail.bind(this, item)}>
                         <View className="list-item-left">
                           <Text className="item-main">{item.content}</Text>
                           <Text className="item-second">{moment(item.noteTime).format('YYYY-MM-DD HH:mm')}</Text>

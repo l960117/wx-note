@@ -81,6 +81,13 @@ class Finding extends Component<findingProps> {
       this.getNoteList()
     })
   }
+
+  showDetail (data) {
+    Taro.navigateTo({
+      url: '/pages/detail/index?noteId=' + data.noteId
+    })
+  }
+
   render () {
     const { noteList } = this.props
     console.log(noteList)
@@ -109,7 +116,7 @@ class Finding extends Component<findingProps> {
               {
                 noteList[type].list.map((item, index) => {
                   return (
-                    <View key={index} className="note-item">
+                    <View key={index} className="note-item" onClick={this.showDetail.bind(this, item)}>
                       <NoteItem note={item}></NoteItem>
                     </View>
                   )
