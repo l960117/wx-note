@@ -11,7 +11,23 @@ export async function getRecommend(params) {
 export async function getFollowAndFens(params) {
   return request({
     url: '/member/getFollowAndFens',
-    method: "POST",
+    method: 'POST',
     data: params
   });
+}
+
+export async function addFollow (params) {
+  return request({
+    url: '/member/addFollow',
+    method: 'POST',
+    data: params
+  })
+}
+
+export async function cancelFollow (params) {
+  return request({
+    url: '/member/cancelFollow',
+    method: 'POST',
+    data: params
+  })
 }

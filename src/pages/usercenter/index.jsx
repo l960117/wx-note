@@ -1,7 +1,7 @@
 import Taro, { Component } from '@tarojs/taro'
-import { View, Image, Text, Button } from '@tarojs/components'
-import { AtAccordion, AtSwipeAction } from 'taro-ui'
-import { getRecommend, getFollowAndFens } from './service'
+import { View, Image, Text } from '@tarojs/components'
+import { AtAccordion, AtSwipeAction, AtMessage } from 'taro-ui'
+import { getRecommend, getFollowAndFens, addFollow, cancelFollow } from './service'
 import './index.scss'
 
 class UserCenter extends Component {
@@ -50,10 +50,85 @@ class UserCenter extends Component {
     })
   }
 
+  addFolow (friendid) {
+    let params = {
+      openid: JSON.parse(Taro.getStorageSync('key')).openid,
+      friendid: friendid
+    }
+    addFollow(params).then((res) => {
+      if (res.resultCode === 200) {
+        Taro.atMessage({
+          'message': '关注成功',
+          'type': 'success'
+        })
+      } else {
+        Taro.atMessage({
+          'message': '关注失败',
+          'type': 'warning'
+        })
+      }
+    })
+    .catch((res) => {
+      console.log(res)
+      Taro.atMessage({
+        'message': '关注失败',
+        'type': 'warning'
+      })
+    })
+  }
+
+  cancelFollow (friendid) {
+    let params = {
+      openid: JSON.parse(Taro.getStorageSync('key')).openid,
+      friendid: friendid
+    }
+    cancelFollow(params).then((res) => {
+      if (res.resultCode === 200) {
+        Taro.atMessage({
+          'message': '取消关注成功',
+          'type': 'success'
+        })
+      } else {
+        Taro.atMessage({
+          'message': '取消关注失败',
+          'type': 'warning'
+        })
+      }
+    })
+    .catch((res) => {
+      console.log(res)
+      Taro.atMessage({
+        'message': '取消关注失败',
+        'type': 'warning'
+      })
+    })
+  }
+
   render () {
-    const { followList, fensList } = this.state
+    const { followList, fensList, recommendList } = this.state
     return (
       <View className='center-content'>
+        <View className='recommend-content'>
+          <View className='recommend-bottom'>
+            {
+              recommendList.map((item) => {
+                return (
+                  <View key={item.id} className='recommend-item'>
+                    <View className='recommend-item-detail'>
+                      <Image src={item.avatar} className='recommend-image'></Image>
+                      <Text className='recommend-nickname'>{item.nickname}</Text>
+                    </View>
+                    <View className='recommend-btn'>
+                      <Text className='iconfont iconjia1 recommend-btn-icon'></Text>
+                      <Text className='recommend-btn-text' onClick={this.addFolow.bind(this, item.openid)}>关注</Text>
+                    </View>
+                  </View>
+                )
+              })
+            }
+          </View>
+          <Text>换一批~</Text>
+        </View>
         <AtAccordion
           open={this.state.followOpen}
           onClick={this.handleFollowClick.bind(this)}
@@ -70,6 +145,7 @@ class UserCenter extends Component {
                     }
                   }
                 ]}
+                  onClick={this.cancelFollow.bind(this, item.openid)}
                 >
                   <View className='center-item' onClick={this.goToFriendHome.bind(this, item.openid)}>
                     <Image src={item.avatar} className='center-item-img'></Image>
@@ -88,7 +164,7 @@ class UserCenter extends Component {
           {
             fensList.map((item, index) => {
               return (
-                <View className='center-item' key={index}  onClick={this.goToFriendHome.bind(this, item.openid)}>
+                <View className='center-item' key={index} onClick={this.goToFriendHome.bind(this, item.openid)}>
                   <Image src={item.avatar} className='center-item-img'></Image>
                   <Text className='center-item-text'>{item.nickname}</Text>
                 </View>
@@ -96,16 +172,7 @@ class UserCenter extends Component {
             })
           }
         </AtAccordion>
-        <View>
-          <Text>推荐关注</Text>
-          <View>
-            <View>
-              <Image></Image>
-              <Text></Text>
-              <Button>关注</Button>
-            </View>
-          </View>
-        </View>
+        <AtMessage />
       </View>
     )
   }

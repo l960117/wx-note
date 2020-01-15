@@ -23,10 +23,64 @@
   &-img {
     width: 60px;
     height: 60px;
-    border-radius: 50%;;
+    border-radius: 50%;
   }
   &-text {
     color: #323232;
     margin-left: 10px;
+  }
+}
+.recommend-content {
+  background: #ffffff;
+  .recommend-bottom {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    .recommend-item {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      &-detail {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        .recommend-image {
+          width: 60px;
+          height: 60px;
+          border-radius: 50%;
+        }
+        .recommend-nickname {
+          font-size: 24px;
+          margin-left: 5px;
+          color: #323232;
+        }
+      }
+      .recommend-btn {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        background: #FF7800;
+        height: 40px;
+        width: 80px;
+        border-radius: 8px;
+        margin-top: 15px;
+        &-icon {
+          font-size: 20px;
+          color: #ffffff
+        }
+        &-text {
+          margin-left: 5px;
+          font-size: 20px;
+          color: #ffffff;
+        }
+      }
+    }
   }
 }
