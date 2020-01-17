@@ -20,7 +20,7 @@ class NoteItem extends Component {
       <View className='note-item'>
         {
           note&&note.images&&
-          <Image src={`${staticUrl}uploads/${note.images.split('|')[0]}`} className='note-item-image'></Image>
+          <Image src={`${staticUrl}uploads/${note.images.split('|')[0]}`} className='note-item-image' mode='widthFix'></Image>
         }
         <View className='note-item-content'>
           <Text className='note-item-content-title'>{note.content}</Text>

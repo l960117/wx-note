@@ -60,7 +60,7 @@ class Detail extends Component {
         <View className='detail_top'>
           <Text className='detail_nickname'>{nickname} 的便签</Text>
           {
-            openid === JSON.parse(Taro.getStorageSync('key')).openid ?
+            Taro.getStorageSync('key')&&openid === JSON.parse(Taro.getStorageSync('key')).openid ?
             <Block>
               <Text className='iconfont icontubiaozhizuomoban2 detail_btn'></Text>
               <Text className='iconfont iconlajitong detail_btn' onClick={this.deleteNote.bind(this)}></Text>
@@ -75,7 +75,7 @@ class Detail extends Component {
         {
           images.map(item => {
             return (
-              <Image key={item} src={`${staticUrl}uploads/${item}`} className='detail_image'></Image>
+              <Image key={item} src={`${staticUrl}uploads/${item}`} className='detail_image' mode='widthFix'></Image>
             )
           })
         }

@@ -85,7 +85,7 @@ class App extends Component {
     Taro.getSetting().then(res => {
       console.log(res)
       if(Object.keys(res.authSetting).length === 0 || !res.authSetting['scope.userInfo']){
-        Taro.navigateTo({
+        Taro.reLaunch({
           url: '/pages/login/index'
         })
       }else{

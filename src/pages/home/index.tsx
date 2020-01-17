@@ -15,10 +15,12 @@ class Home extends Component {
     nickname: ''
   }
 
-  componentWillMount () {
+  componentDidShow () {
+    console.log(333)
     if (!Taro.getStorageSync('key')) {
       return
     }
+    console.log(444)
     if (Taro.getStorageSync('userInfo')) {
       this.setState({
         nickname: JSON.parse(Taro.getStorageSync('userInfo')).nickName

@@ -1,13 +1,14 @@
 import Taro, { Component } from '@tarojs/taro'
-import { View, Button } from '@tarojs/components'
+import { View, Button, Image } from '@tarojs/components'
 import login from '../../services/login'
+import './index.scss'
 
-class Home extends Component {
+class Login extends Component {
 
   state = {
     oauthBtnStatus: true, // 授权按钮是否显示 默认为显示
     userInfo: null, // 用户信息
-    btnText: '微信授权登录'
+    btnText: '微信登录'
   }
 
   componentWillMount() {
@@ -20,7 +21,7 @@ class Home extends Component {
   componentDidShow() {}
 
   componentDidHide() {}
-  onGotUserInfo = res => {
+  onGotUserInfo (res) {
     console.log(res)
     if(res.detail.userInfo){
       Taro.setStorageSync('userInfo', JSON.stringify(res.detail.userInfo))
@@ -42,9 +43,10 @@ class Home extends Component {
     const { btnText } = this.state
     return (
       <View>
-        <Button className='login-btn' openType='getUserInfo' onGetUserInfo={this.onGotUserInfo}>{btnText}</Button>
+        <Image src={require('../../assets/images/logo.jpg')} className='login-image' mode='widthFix'></Image>
+        <Button className='login-btn' openType='getUserInfo' onGetUserInfo={this.onGotUserInfo.bind(this)}>{btnText}</Button>
       </View>
     )
   }
 }
-export default Home;
+export default Login;

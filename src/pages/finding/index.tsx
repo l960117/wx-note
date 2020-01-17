@@ -27,7 +27,7 @@ class Finding extends Component<findingProps> {
     status: ''
   }
 
-  componentWillMount () {
+  componentDidShow () {
     this.getNoteList()
   }
 
