@@ -24,7 +24,7 @@ class Friend extends Component<FriendProps> {
     openid: ''
   }
 
-  componentWillMount () {
+  componentDidShow () {
     const { dispatch } = this.props
     this.setState({
       openid: this.$router.params.openid

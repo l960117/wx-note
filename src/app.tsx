@@ -70,6 +70,7 @@ class App extends Component {
 
   componentWillMount () {
     Taro.hideTabBar()
+    Taro.showShareMenu()
     this.getOauthStatus()
   }
 

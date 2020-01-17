@@ -1,6 +1,7 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View, Text, Block, Image } from '@tarojs/components'
 import { getNoteDetail, deleteNote } from './service'
+import { AtMessage } from 'taro-ui'
 import { staticUrl } from '../../services/config'
 import './index.scss'
 
@@ -23,9 +24,24 @@ class Detail extends Component {
           openid: res.data.openid,
           noteId: res.data.noteId,
           content: res.data.content,
-          images: res.data.images.split('|')
+          images: res.data.images === '' ? [] : res.data.images.split('|')
         })
       }
+    })
+  }
+
+  onShareAppMessage (res) {
+    const { nickname } = this.state
+    return {
+      title: `${nickname} 的便签`,
+      path:'pages/detail/index?noteId=' + this.$router.params.noteId
+    }
+  }
+
+  showShare () {
+    Taro.atMessage({
+      'message': '请使用右上角转发按钮',
+      'type': 'success',
     })
   }
 
@@ -62,7 +78,7 @@ class Detail extends Component {
           {
             Taro.getStorageSync('key')&&openid === JSON.parse(Taro.getStorageSync('key')).openid ?
             <Block>
-              <Text className='iconfont icontubiaozhizuomoban2 detail_btn'></Text>
+              <Text className='iconfont icontubiaozhizuomoban2 detail_btn' onClick={this.showShare.bind(this)}></Text>
               <Text className='iconfont iconlajitong detail_btn' onClick={this.deleteNote.bind(this)}></Text>
             </Block>
             :
@@ -79,6 +95,7 @@ class Detail extends Component {
             )
           })
         }
+        <AtMessage/>
       </View>
     )
   }
