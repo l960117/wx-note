@@ -1,9 +1,6 @@
 @import "~taro-ui/dist/style/components/textarea.scss";
 @import "~taro-ui/dist/style/components/image-picker.scss";
 @import "~taro-ui/dist/style/components/modal.scss";
-/deep/ .at-image-picker__preview-img {
-  width: 50% !important;
-}
 .add_content {
   background: #f0f0f0;
   height: 100%;
