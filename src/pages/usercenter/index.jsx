@@ -158,6 +158,7 @@ class UserCenter extends Component {
         }
         <AtAccordion
           open={this.state.followOpen}
+          hasBorder={false}
           onClick={this.handleFollowClick.bind(this)}
           title='关注'
         >
@@ -192,6 +193,7 @@ class UserCenter extends Component {
         </AtAccordion>
         <AtAccordion
           open={this.state.fensOpen}
+          hasBorder={false}
           onClick={this.handleFensClick.bind(this)}
           title='粉丝'
         >
