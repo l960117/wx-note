@@ -5,7 +5,7 @@ import { AtMessage } from 'taro-ui'
 import { staticUrl } from '../../services/config'
 import './index.scss'
 
-class Detail extends Component {
+class Detail extends Component { 
 
   state = {
     nickname: '',
